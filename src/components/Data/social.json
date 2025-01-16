@@ -1,0 +1,18 @@
+{
+  "facebook": {
+    "icon": "/icons/facebook.svg",
+    "url": "https://facebook.com/zhive249"
+  },
+  "linkedin": {
+    "icon": "/icons/linkedin.svg",
+    "url": "https://linkedin.com/in/zhive249"
+  },
+  "instagram": {
+    "icon": "/icons/instagram.svg",
+    "url": "https://instagram.com/zhive249"
+  },
+  "tiktok": {
+    "icon": "/icons/tiktok.svg",
+    "url": "https://tiktok.com/@zhive249"
+  }
+}

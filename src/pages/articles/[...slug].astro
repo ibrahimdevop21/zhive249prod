@@ -1,0 +1,179 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+
+// Generate static paths for all articles
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+// Format date
+const formattedDate = new Date(article.data.publishDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout 
+  title={`${article.data.title} | Zhive249`}
+  description={article.data.description}
+>
+  <article class="relative bg-navy-900 min-h-screen">
+    <!-- Hero Section with Image -->
+    <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+      <!-- Background Image -->
+      <div class="absolute inset-0">
+        <img 
+          src={article.data.image} 
+          alt={article.data.title}
+          class="w-full h-full object-cover"
+        />
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-navy-950/60 via-navy-950/80 to-navy-900"></div>
+      </div>
+
+      <!-- Content Overlay -->
+      <Container>
+        <div class="relative h-full flex flex-col justify-end pb-20">
+          <!-- Category Badge -->
+          <div class="mb-6">
+            <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold bg-primary-500 text-white shadow-lg shadow-primary-500/20">
+              {article.data.category}
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white max-w-4xl">
+            {article.data.title}
+          </h1>
+
+          <!-- Description -->
+          <p class="text-lg text-navy-100 mb-8 max-w-2xl">
+            {article.data.description}
+          </p>
+
+          <!-- Author Info -->
+          <div class="flex items-center space-x-4">
+            <img 
+              src={article.data.author.image} 
+              alt={article.data.author.name}
+              class="w-12 h-12 rounded-full object-cover border-2 border-primary-500/20"
+            />
+            <div>
+              <div class="text-white font-medium">
+                {article.data.author.name}
+              </div>
+              <div class="text-navy-200 text-sm">
+                {article.data.author.role} · {formattedDate}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </div>
+
+    <!-- Article Content -->
+    <Container>
+      <div class="relative py-16">
+        <div class="max-w-4xl mx-auto prose prose-invert prose-lg">
+          <div class="prose-headings:text-white prose-p:text-navy-100 prose-strong:text-white prose-a:text-primary-400 hover:prose-a:text-primary-300 prose-blockquote:text-navy-100 prose-code:text-primary-300 prose-pre:bg-navy-800 prose-pre:text-navy-100 prose-ol:text-navy-100 prose-ul:text-navy-100">
+            <Content />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </article>
+</Layout>
+
+<style is:global>
+  /* Remove the first h1/title from the markdown content */
+  .prose h1:first-child {
+    display: none;
+  }
+
+  /* Additional article content styles */
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: white;
+    font-weight: 700;
+  }
+  
+  .prose p {
+    color: rgb(203 213 225);
+  }
+
+  .prose strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  .prose a {
+    color: rgb(96 165 250);
+    text-decoration: none;
+  }
+
+  .prose a:hover {
+    color: rgb(147 197 253);
+  }
+
+  .prose ul li::marker,
+  .prose ol li::marker {
+    color: rgb(96 165 250);
+  }
+
+  .prose ul li,
+  .prose ol li {
+    color: rgb(203 213 225);
+  }
+
+  .prose blockquote {
+    border-left-color: rgb(96 165 250);
+    color: rgb(203 213 225);
+  }
+
+  .prose hr {
+    border-color: rgb(51 65 85);
+  }
+
+  .prose code {
+    color: rgb(147 197 253);
+    background-color: rgb(30 41 59);
+    padding: 0.2em 0.4em;
+    border-radius: 0.375rem;
+  }
+
+  .prose pre {
+    background-color: rgb(30 41 59);
+    color: rgb(203 213 225);
+  }
+
+  .prose img {
+    border-radius: 0.5rem;
+  }
+
+  .prose table {
+    color: rgb(203 213 225);
+  }
+
+  .prose thead {
+    color: white;
+    border-bottom-color: rgb(51 65 85);
+  }
+
+  .prose tbody tr {
+    border-bottom-color: rgb(51 65 85);
+  }
+</style>

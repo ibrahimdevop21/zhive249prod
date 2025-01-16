@@ -1,0 +1,143 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const frontmatter = {
+  title: "Web Development",
+  subtitle: "& Technology",
+  description: "We build modern, responsive, and scalable web solutions that drive your business forward and provide exceptional user experiences.",
+  image: "/services/02.svg"
+};
+---
+
+<ServiceLayout frontmatter={frontmatter}>
+  <h2 class="text-orange-500">Transform Your Digital Presence</h2>
+  <p class="text-dark-300">At Zhive249, we specialize in creating cutting-edge web solutions that combine stunning design with powerful functionality. Our development team crafts websites and applications that not only look great but also deliver exceptional performance and user experience.</p>
+
+  <h3 class="text-orange-500">Our Web Development Services Include:</h3>
+  <ul class="feature-list">
+    <li class="feature-item">
+      <span class="feature-icon">💻</span>
+      <span class="feature-text">Custom Website Development</span>
+    </li>
+    <li class="feature-item">
+      <span class="feature-icon">📱</span>
+      <span class="feature-text">Responsive Web Design</span>
+    </li>
+    <li class="feature-item">
+      <span class="feature-icon">🛒</span>
+      <span class="feature-text">E-commerce Solutions</span>
+    </li>
+    <li class="feature-item">
+      <span class="feature-icon">⚡</span>
+      <span class="feature-text">Web Application Development</span>
+    </li>
+    <li class="feature-item">
+      <span class="feature-icon">🔧</span>
+      <span class="feature-text">CMS Integration</span>
+    </li>
+    <li class="feature-item">
+      <span class="feature-icon">🚀</span>
+      <span class="feature-text">Performance Optimization</span>
+    </li>
+  </ul>
+
+  <h3 class="text-orange-500">Our Development Process</h3>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-number">1</div>
+      <h4 class="text-white">Planning</h4>
+      <p class="text-navy-300 dark:text-navy-300 mt-2">We start with thorough requirements gathering and create a detailed project roadmap to ensure success.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">2</div>
+      <h4 class="text-white">Design</h4>
+      <p class="text-navy-300 dark:text-navy-300 mt-2">Our designers create intuitive interfaces and user experiences that align with your brand and goals.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">3</div>
+      <h4 class="text-white">Development</h4>
+      <p class="text-navy-300 dark:text-navy-300 mt-2">We build your solution using modern technologies and best practices to ensure scalability and performance.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-number">4</div>
+      <h4 class="text-white">Launch & Support</h4>
+      <p class="text-navy-300 dark:text-navy-300 mt-2">We ensure a smooth deployment and provide ongoing support to keep your web presence running optimally.</p>
+    </div>
+  </div>
+
+  <h3 class="text-orange-500">Why Professional Web Development Matters</h3>
+  <div class="benefits-grid">
+    {[
+      'Improved user experience and engagement',
+      'Better search engine rankings and visibility',
+      'Increased conversion rates and sales',
+      'Enhanced security and performance',
+      'Scalable solutions for business growth'
+    ].map((benefit) => (
+      <div class="benefit-item">
+        <svg class="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+        <span class="text-navy-300 dark:text-navy-300">{benefit}</span>
+      </div>
+    ))}
+  </div>
+</ServiceLayout>
+
+<style>
+  .text-gradient {
+    background: linear-gradient(to right, #22c55e, #16a34a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .feature-list {
+    @apply grid gap-6 md:grid-cols-2 mt-8;
+  }
+
+  .feature-item {
+    @apply flex items-center space-x-4 p-4 bg-navy-400/30 dark:bg-navy-600/30 rounded-xl transition-transform duration-300 hover:transform hover:scale-105;
+  }
+
+  .feature-icon {
+    @apply text-2xl;
+  }
+
+  .feature-text {
+    @apply text-navy-300 dark:text-navy-300;
+  }
+
+  .process-steps {
+    @apply grid gap-8 md:grid-cols-2 mt-8;
+  }
+
+  .process-step {
+    @apply relative p-6 bg-navy-400/30 dark:bg-navy-600/30 rounded-xl border border-primary-500/10;
+  }
+
+  .step-number {
+    @apply absolute -top-4 -left-4 w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold;
+  }
+
+  .benefits-grid {
+    @apply grid gap-4 mt-8;
+  }
+
+  .benefit-item {
+    @apply flex items-center space-x-4 p-4 bg-navy-400/30 dark:bg-navy-600/30 rounded-xl transition-all duration-300 hover:bg-navy-400/50;
+  }
+
+  .feature-description {
+    @apply text-navy-300 dark:text-navy-300;
+  }
+
+  .process-description {
+    @apply text-navy-300 dark:text-navy-300 mt-2;
+  }
+
+  .benefit-description {
+    @apply text-navy-300 dark:text-navy-300;
+  }
+</style>

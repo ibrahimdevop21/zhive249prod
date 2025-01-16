@@ -1,0 +1,48 @@
+---
+import TeamCard from './TeamCard.astro';
+
+interface Props {
+  teamMembers: Array<{
+    name: string;
+    role: string;
+    bio: string;
+    image: string;
+    socials: {
+      linkedin?: string;
+      twitter?: string;
+      github?: string;
+      instagram?: string;
+    };
+  }>;
+}
+
+const { teamMembers } = Astro.props;
+---
+
+<div 
+  class="team-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+  data-aos="fade-up"
+  data-aos-duration="1200"
+  data-aos-delay="100"
+>
+  {teamMembers.map((member, index) => (
+    <div data-aos="fade-up" data-aos-delay={150 * (index + 1)} class="team-card-wrapper">
+      <TeamCard {...member} />
+    </div>
+  ))}
+</div>
+
+<style>
+  .team-grid {
+    perspective: 1000px;
+  }
+  
+  .team-card-wrapper .team-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease-out;
+  }
+  
+  .team-card-wrapper:hover .team-card {
+    transform: translateY(-10px) rotateX(5deg);
+  }
+</style>

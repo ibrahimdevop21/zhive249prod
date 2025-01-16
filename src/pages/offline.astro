@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Offline" description="You are currently offline" noIndex={true}>
+  <div class="min-h-[60vh] flex items-center justify-center">
+    <div class="text-center px-4">
+      <h1 class="text-4xl font-bold mb-4">You're Offline</h1>
+      <p class="text-xl mb-8">Please check your internet connection and try again.</p>
+      <button 
+        onclick="window.location.reload()" 
+        class="bg-primary-500 hover:bg-primary-600 text-white font-bold py-2 px-4 rounded transition-colors"
+      >
+        Try Again
+      </button>
+    </div>
+  </div>
+</Layout>

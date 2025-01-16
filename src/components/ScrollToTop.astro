@@ -1,0 +1,65 @@
+---
+---
+
+<button
+  id="scrollToTop"
+  class="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-primary-500/90 text-white shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-navy-900"
+  aria-label="Scroll to top"
+>
+  <svg
+    class="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 10l7-7m0 0l7 7m-7-7v18"
+    />
+  </svg>
+</button>
+
+<script>
+  const scrollButton = document.getElementById('scrollToTop');
+
+  // Show/hide button based on scroll position
+  const toggleScrollButton = () => {
+    const scrolled = window.scrollY;
+    if (scrollButton) {
+      if (scrolled > 200) {
+        scrollButton.classList.remove('translate-y-20', 'opacity-0');
+        scrollButton.classList.add('translate-y-0', 'opacity-100');
+      } else {
+        scrollButton.classList.add('translate-y-20', 'opacity-0');
+        scrollButton.classList.remove('translate-y-0', 'opacity-100');
+      }
+    }
+  };
+
+  // Smooth scroll to top with easing
+  const scrollToTop = () => {
+    const currentPosition = window.scrollY;
+    const scrollStep = Math.PI / (500 / 15); // 500ms duration
+    let count = 0;
+
+    const scrollAnimation = () => {
+      if (window.scrollY !== 0) {
+        count += 1;
+        const position = currentPosition * Math.cos(count * scrollStep);
+        window.scrollTo(0, position);
+        requestAnimationFrame(scrollAnimation);
+      }
+    };
+
+    requestAnimationFrame(scrollAnimation);
+  };
+
+  // Event listeners
+  window.addEventListener('scroll', toggleScrollButton);
+  scrollButton?.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToTop();
+  });
+</script>

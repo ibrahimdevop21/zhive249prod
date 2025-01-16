@@ -1,0 +1,236 @@
+---
+import Container from './Container.astro';
+
+interface NavItem {
+  name: string;
+  href: string;
+  isButton?: boolean;
+  isDropdown?: boolean;
+  dropdownItems?: Array<{ name: string, href: string, description?: string }>;
+  description?: string;
+}
+
+const menuItems: NavItem[] = [
+  { 
+    name: 'Home',
+    href: '/',
+    isButton: false,
+    description: 'Return to homepage'
+  },
+  {
+    name: 'Services',
+    href: '/services',
+    isDropdown: true,
+    description: 'Explore our comprehensive range of digital marketing and development services',
+    dropdownItems: [
+      { name: 'Creative Branding', href: '/services/creative-branding', description: 'Professional brand identity design and strategy services' },
+      { name: 'Web Development', href: '/services/web-development', description: 'Custom website and web application development solutions' },
+      { name: 'Market Research', href: '/services/market-research', description: 'In-depth market analysis and consumer insights' },
+      { name: 'Digital Marketing', href: '/services/digital-marketing', description: 'Results-driven digital marketing campaigns and strategies' },
+      { name: 'Content Creation', href: '/services/content-creation', description: 'High-quality content creation and content marketing services' },
+      { name: 'Analytics & Optimization', href: '/services/analytics-optimization', description: 'Data-driven optimization and performance tracking' },
+    ],
+  },
+  { 
+    name: 'About Us',
+    href: '/about',
+    isButton: false,
+    description: 'Learn about our company history, mission, and team'
+  },
+  { 
+    name: 'Articles',
+    href: '/articles',
+    isButton: false,
+    description: 'Read our latest insights and industry updates'
+  },
+  { 
+    name: 'Contact',
+    href: '/contact',
+    isButton: false,
+    description: 'Get in touch with our team for inquiries and support'
+  },
+];
+
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<nav class="fixed w-full z-50 top-0 start-0 bg-navy-900/90 backdrop-blur-xl border-b border-navy-300/10" aria-label="Main navigation">
+  <Container>
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <!-- Logo and Brand -->
+      <a href="/" class="flex items-center space-x-2 group" aria-label="Zhive249 - Return to homepage">
+        <div class="relative">
+          <div class="absolute -inset-2 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+          <img 
+            src="/images/Logo.svg" 
+            class="w-8 h-8 relative transform transition-all duration-300 group-hover:scale-110" 
+            alt="Zhive249 Digital Marketing Agency Logo"
+            width="32"
+            height="32"
+            loading="eager"
+            decoding="async" 
+          />
+        </div>
+        <span class="text-2xl font-bold">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80 group-hover:text-primary-500 transition-colors duration-300">Zhive</span>
+          <span class="text-primary-500 group-hover:text-white transition-colors duration-300">249</span>
+        </span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600"
+        aria-controls="navbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </button>
+
+      <!-- Navigation Menu -->
+      <div class="hidden w-full md:block md:w-auto" id="navbar">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0" role="menubar">
+          {menuItems.map((item) => (
+            <li class="relative group" role="none">
+              {item.isDropdown ? (
+                <div class="flex items-center space-x-1">
+                  <a
+                    href={item.href}
+                    class="text-navy-100 hover:text-primary-500 transition-colors duration-300 md:p-0 text-base font-medium"
+                    aria-current={pathname === item.href ? "page" : undefined}
+                  >
+                    {item.name}
+                  </a>
+                  <button
+                    type="button"
+                    class="flex items-center text-navy-100 hover:text-primary-500 transition-colors duration-300 md:p-0"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    data-dropdown-toggle="services-menu"
+                  >
+                    <span class="sr-only">Toggle services menu</span>
+                    <svg class="w-4 h-4 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+
+                  <!-- Dropdown Menu -->
+                  <div
+                    id="services-menu"
+                    class="hidden absolute top-full left-0 mt-1 w-56 rounded-md bg-navy-900 border border-navy-700/50 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    role="menu"
+                    aria-orientation="vertical"
+                    aria-labelledby="services-menu-button"
+                  >
+                    <div class="py-1" role="none">
+                      {item.dropdownItems?.map((dropItem) => (
+                        <a
+                          href={dropItem.href}
+                          class="text-navy-100 group flex items-center px-4 py-2 text-sm hover:bg-navy-800/50 hover:text-primary-500 transition-all duration-300"
+                          role="menuitem"
+                        >
+                          {dropItem.name}
+                        </a>
+                      ))}
+                      <div class="border-t border-navy-700/50 mt-1">
+                        <a
+                          href="/services"
+                          class="text-primary-500 group flex items-center px-4 py-2 text-sm hover:bg-navy-800/50 hover:text-primary-400 transition-all duration-300"
+                          role="menuitem"
+                        >
+                          View All Services
+                          <svg class="ml-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                          </svg>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={item.href}
+                  class="block text-navy-100 hover:text-primary-500 transition-colors duration-300 md:p-0 text-base font-medium"
+                  role="menuitem"
+                  aria-current={pathname === item.href ? "page" : undefined}
+                >
+                  {item.name}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Container>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dropdownButton = document.querySelector('[data-dropdown-toggle="services-menu"]');
+    const dropdownMenu = document.getElementById('services-menu');
+    const arrow = dropdownButton?.querySelector('svg');
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!dropdownButton?.contains(event.target as Node) && !dropdownMenu?.contains(event.target as Node)) {
+        dropdownMenu?.classList.add('hidden');
+        arrow?.classList.remove('rotate-180');
+        dropdownButton?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Toggle dropdown on button click
+    dropdownButton?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const isExpanded = dropdownButton.getAttribute('aria-expanded') === 'true';
+      
+      dropdownMenu?.classList.toggle('hidden');
+      arrow?.classList.toggle('rotate-180');
+      dropdownButton.setAttribute('aria-expanded', (!isExpanded).toString());
+    });
+
+    // Handle keyboard navigation
+    dropdownButton?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        dropdownButton.click();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && dropdownMenu && !dropdownMenu.classList.contains('hidden')) {
+        dropdownMenu.classList.add('hidden');
+        arrow?.classList.remove('rotate-180');
+        dropdownButton?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Mobile menu
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const navbar = document.getElementById('navbar');
+
+    mobileMenuButton?.addEventListener('click', () => {
+      navbar?.classList.toggle('hidden');
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+    });
+  });
+</script>
+
+<style>
+  @media print {
+    [id^="services-menu"] {
+      display: block !important;
+      position: static !important;
+      background: none !important;
+      box-shadow: none !important;
+    }
+  }
+</style>

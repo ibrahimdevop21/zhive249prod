@@ -1,0 +1,133 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const frontmatter = {
+  title: "Content Creation",
+  subtitle: "& Strategy",
+  description: "Create engaging, SEO-optimized content that connects with your audience and drives results. Our content creation services help you tell your story effectively across all platforms.",
+  image: "/services/03.svg",
+  features: [
+    "Blog Posts & Articles",
+    "Social Media Content",
+    "Video Production",
+    "Email Newsletters",
+    "Infographics & Visual Content"
+  ],
+  benefits: [
+    "Increase organic traffic",
+    "Build audience engagement",
+    "Establish thought leadership",
+    "Drive conversions",
+    "Improve brand awareness"
+  ]
+};
+---
+
+<ServiceLayout frontmatter={frontmatter}>
+  <div class="prose prose-lg max-w-none prose-dark">
+    <h2 class="text-primary-500">Compelling Content That Converts</h2>
+    <p class="text-navy-200">
+      In today's digital landscape, content is king. Our content creation services help you develop and execute a content strategy that engages your audience, builds trust, and drives conversions. We create content that not only tells your story but also resonates with your target audience.
+    </p>
+
+    <h3 class="text-primary-500">Our Content Services Include:</h3>
+    <ul class="feature-list" aria-label="Content creation services features">
+      {frontmatter.features.map(feature => (
+        <li class="feature-item flex items-center gap-3">
+          <span class="feature-icon text-primary-500" aria-hidden="true">✓</span>
+          <span class="feature-text">{feature}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h3 class="text-primary-500">Key Benefits</h3>
+    <ul class="benefit-list" aria-label="Content creation benefits">
+      {frontmatter.benefits.map(benefit => (
+        <li class="benefit-item flex items-center gap-3">
+          <span class="benefit-icon text-accent-500" aria-hidden="true">→</span>
+          <span class="benefit-text">{benefit}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h3 class="text-primary-500">Our Content Creation Process</h3>
+    <p class="text-navy-200">
+      We follow a strategic approach to content creation that ensures your content aligns with your business goals and resonates with your target audience:
+    </p>
+
+    <ol class="process-list" aria-label="Our content creation process">
+      <li class="process-item">
+        <strong>Research & Planning:</strong> Understanding your audience and content goals
+      </li>
+      <li class="process-item">
+        <strong>Content Strategy:</strong> Developing a comprehensive content plan
+      </li>
+      <li class="process-item">
+        <strong>Creation & Optimization:</strong> Crafting engaging, SEO-friendly content
+      </li>
+      <li class="process-item">
+        <strong>Distribution:</strong> Publishing and promoting content across channels
+      </li>
+      <li class="process-item">
+        <strong>Analysis & Refinement:</strong> Measuring performance and optimizing strategy
+      </li>
+    </ol>
+
+    <div class="cta-section mt-8 p-6 bg-navy-700/50 rounded-lg">
+      <h3 class="text-primary-500">Ready to Create Engaging Content?</h3>
+      <p class="text-navy-200">
+        Let's develop a content strategy that helps you connect with your audience and achieve your business goals. Contact us today to get started.
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-flex items-center px-6 py-3 mt-4 text-base font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors duration-200"
+        aria-label="Contact us about content creation services"
+      >
+        Get Started
+        <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</ServiceLayout>
+
+<style>
+  .feature-list,
+  .benefit-list,
+  .process-list {
+    @apply space-y-4 my-6 list-none pl-0;
+  }
+
+  .feature-item,
+  .benefit-item,
+  .process-item {
+    @apply text-navy-200 py-2 border-b border-navy-700/50 last:border-0;
+  }
+
+  .feature-icon,
+  .benefit-icon {
+    @apply flex-shrink-0 w-5 h-5;
+  }
+
+  .process-item {
+    @apply relative pl-8;
+  }
+
+  .process-item::before {
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center 
+    bg-primary-500/10 rounded-full text-primary-500 text-sm font-bold;
+    counter-increment: process;
+    content: counter(process);
+  }
+
+  .cta-section {
+    @apply relative overflow-hidden;
+  }
+
+  .cta-section::before {
+    @apply absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5;
+    content: '';
+    z-index: -1;
+  }
+</style>

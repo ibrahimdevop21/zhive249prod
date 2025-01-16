@@ -1,0 +1,133 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const frontmatter = {
+  title: "Market Research",
+  subtitle: "& Analysis",
+  description: "Make informed business decisions with our comprehensive market research services. We help you understand your market, competitors, and customers to drive strategic growth.",
+  image: "/services/05.svg",
+  features: [
+    "Competitor Analysis",
+    "Market Trends Research",
+    "Customer Insights",
+    "Brand Perception Studies",
+    "Market Opportunity Analysis"
+  ],
+  benefits: [
+    "Informed decision making",
+    "Competitive advantage",
+    "Risk mitigation",
+    "Market opportunity identification",
+    "Customer understanding"
+  ]
+};
+---
+
+<ServiceLayout frontmatter={frontmatter}>
+  <div class="prose prose-lg max-w-none prose-dark">
+    <h2 class="text-primary-500">Strategic Market Insights</h2>
+    <p class="text-navy-200">
+      Understanding your market is crucial for business success. Our market research services provide you with deep insights into your industry, competitors, and target audience, enabling you to make informed decisions and stay ahead of the curve.
+    </p>
+
+    <h3 class="text-primary-500">Our Research Services Include:</h3>
+    <ul class="feature-list" aria-label="Market research services features">
+      {frontmatter.features.map(feature => (
+        <li class="feature-item flex items-center gap-3">
+          <span class="feature-icon text-primary-500" aria-hidden="true">✓</span>
+          <span class="feature-text">{feature}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h3 class="text-primary-500">Key Benefits</h3>
+    <ul class="benefit-list" aria-label="Market research benefits">
+      {frontmatter.benefits.map(benefit => (
+        <li class="benefit-item flex items-center gap-3">
+          <span class="benefit-icon text-accent-500" aria-hidden="true">→</span>
+          <span class="benefit-text">{benefit}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h3 class="text-primary-500">Our Research Process</h3>
+    <p class="text-navy-200">
+      We follow a systematic approach to market research that ensures comprehensive insights and actionable recommendations:
+    </p>
+
+    <ol class="process-list" aria-label="Our market research process">
+      <li class="process-item">
+        <strong>Research Design:</strong> Developing research objectives and methodology
+      </li>
+      <li class="process-item">
+        <strong>Data Collection:</strong> Gathering primary and secondary market data
+      </li>
+      <li class="process-item">
+        <strong>Analysis:</strong> Processing and analyzing collected data
+      </li>
+      <li class="process-item">
+        <strong>Insights:</strong> Identifying key findings and opportunities
+      </li>
+      <li class="process-item">
+        <strong>Recommendations:</strong> Developing actionable strategies
+      </li>
+    </ol>
+
+    <div class="cta-section mt-8 p-6 bg-navy-700/50 rounded-lg">
+      <h3 class="text-primary-500">Ready to Understand Your Market Better?</h3>
+      <p class="text-navy-200">
+        Let's uncover the insights you need to make informed business decisions. Contact us today to start your market research project.
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-flex items-center px-6 py-3 mt-4 text-base font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors duration-200"
+        aria-label="Contact us about market research services"
+      >
+        Get Started
+        <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</ServiceLayout>
+
+<style>
+  .feature-list,
+  .benefit-list,
+  .process-list {
+    @apply space-y-4 my-6 list-none pl-0;
+  }
+
+  .feature-item,
+  .benefit-item,
+  .process-item {
+    @apply text-navy-200 py-2 border-b border-navy-700/50 last:border-0;
+  }
+
+  .feature-icon,
+  .benefit-icon {
+    @apply flex-shrink-0 w-5 h-5;
+  }
+
+  .process-item {
+    @apply relative pl-8;
+  }
+
+  .process-item::before {
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center 
+    bg-primary-500/10 rounded-full text-primary-500 text-sm font-bold;
+    counter-increment: process;
+    content: counter(process);
+  }
+
+  .cta-section {
+    @apply relative overflow-hidden;
+  }
+
+  .cta-section::before {
+    @apply absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5;
+    content: '';
+    z-index: -1;
+  }
+</style>

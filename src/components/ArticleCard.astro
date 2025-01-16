@@ -1,0 +1,84 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  publishDate: string;
+  author: {
+    name: string;
+    image: string;
+    role: string;
+  };
+  category: string;
+  image: string;
+  slug: string;
+}
+
+const { title, description, publishDate, author, image, slug, category } = Astro.props;
+
+// Format date
+const date = new Date(publishDate);
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<article 
+  class="group relative block rounded-2xl bg-gradient-to-b from-navy-900/90 to-navy-950/90 shadow-2xl shadow-navy-950/50 backdrop-blur-sm border border-navy-800/50 hover:-translate-y-1 hover:shadow-3xl hover:shadow-primary-500/20 transition-all duration-300 h-full"
+>
+  <a href={`/articles/${slug}`} class="block h-full flex flex-col" aria-label={title}>
+    <!-- Glow Effects -->
+    <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-primary-500/5 to-primary-500/0 pointer-events-none"></div>
+    <div class="absolute -inset-0.5 rounded-2xl bg-gradient-to-b from-primary-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl pointer-events-none"></div>
+
+    <!-- Image Container -->
+    <div class="relative w-full pt-[56.25%] rounded-t-2xl overflow-hidden">
+      <!-- Category Badge -->
+      <div class="absolute top-4 left-4 z-10">
+        <span class="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold bg-primary-500 text-white shadow-lg shadow-primary-500/20 ring-1 ring-white/10">
+          {category}
+        </span>
+      </div>
+      
+      <img
+        src={image}
+        alt={`Featured image for article: ${title}`}
+        class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+        loading="lazy"
+        decoding="async"
+      />
+      <!-- Image Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 to-transparent pointer-events-none"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative p-6 flex-1 flex flex-col">
+      <h2 class="text-xl font-bold text-white mb-3 group-hover:text-primary-400 transition-colors duration-300 line-clamp-2">
+        {title}
+      </h2>
+      <p class="text-navy-200 mb-4 line-clamp-2 flex-1">
+        {description}
+      </p>
+      
+      <!-- Author and Date -->
+      <div class="flex items-center space-x-4 mt-auto">
+        <div class="flex-shrink-0">
+          <img 
+            src={author.image} 
+            alt={author.name}
+            class="w-10 h-10 rounded-full object-cover border-2 border-primary-500/20"
+          />
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-white truncate">
+            {author.name}
+          </p>
+          <p class="text-sm text-navy-300">
+            {formattedDate}
+          </p>
+        </div>
+      </div>
+    </div>
+  </a>
+</article>

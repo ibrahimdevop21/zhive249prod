@@ -1,0 +1,94 @@
+---
+import servicesData from '../components/Data/services.json';
+import Container from './Container.astro';
+import Topic from './Topic.astro';
+---
+
+<section class="relative py-8 bg-navy-800/50" aria-label="Our Services">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 bg-grid-navy-700/20 bg-[size:20px_20px]" aria-hidden="true"></div>
+  
+  <!-- Gradient Overlays -->
+  <div class="absolute inset-0" aria-hidden="true">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-300/20 to-transparent"></div>
+  </div>
+
+  <Container>
+    <!-- Section Header -->
+    <div class="relative max-w-2xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-5xl">Our Services</h2>
+      <p class="text-3xl font-bold tracking-tight text-white sm:text-2xl mt-4" role="doc-subtitle">
+        Comprehensive Digital Solutions
+      </p>
+      <p class="mt-6 text-lg leading-8 text-navy-200">
+        Transform your digital presence with our full suite of services. From branding to development, 
+        we deliver results that drive growth and success.
+      </p>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative" role="list">
+      <!-- Decorative Elements -->
+      <div class="absolute -left-4 -top-4 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
+      <div class="absolute -right-4 -bottom-4 w-72 h-72 bg-accent-500/10 rounded-full blur-3xl" aria-hidden="true"></div>
+
+      {servicesData.map(service => (
+        <article class="relative group" role="listitem">
+          <!-- Card Background with Gradient Border -->
+          <div class="absolute -inset-px bg-gradient-to-r from-primary-500/50 to-accent-500/50 rounded-2xl blur transition duration-300 group-hover:opacity-100 opacity-75" aria-hidden="true"></div>
+          <div class="relative h-full p-px bg-navy-700/50 rounded-2xl overflow-hidden">
+            <div class="relative h-full bg-navy-800/90 rounded-2xl p-8">
+              <!-- Service Icon -->
+              <div class="mb-6 inline-flex p-3 rounded-lg bg-primary-500/10" aria-hidden="true">
+                <img 
+                  src={service.icon} 
+                  alt=""
+                  class="w-6 h-6"
+                  role="presentation"
+                />
+              </div>
+              
+              <!-- Service Title -->
+              <h3 class="text-xl font-semibold text-white mb-3">
+                {service.title}
+              </h3>
+              
+              <!-- Service Description -->
+              <p class="text-navy-200">
+                {service.description}
+              </p>
+              
+              <!-- Learn More Link -->
+              <a 
+                href={service.link} 
+                class="inline-flex items-center mt-4 text-primary-500 hover:text-primary-400 transition-colors"
+                aria-label={`Learn more about ${service.title}`}
+              >
+                Learn more
+                <svg class="w-4 h-4 ml-1" viewBox="0 0 16 16" fill="none">
+                  <path d="M6.5 3.5l4 4.5-4 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>

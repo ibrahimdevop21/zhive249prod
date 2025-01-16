@@ -1,0 +1,147 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all articles and sort by publish date
+const articles = await getCollection('articles', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+const sortedArticles = articles.sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+// Get featured articles
+const featuredArticles = sortedArticles.filter(article => article.data.featured);
+
+// Pagination
+const articlesPerPage = 9;
+const currentPage = Astro.url.searchParams.get('page') ? parseInt(Astro.url.searchParams.get('page')) : 1;
+const totalPages = Math.ceil(sortedArticles.length / articlesPerPage);
+const startIndex = (currentPage - 1) * articlesPerPage;
+const endIndex = startIndex + articlesPerPage;
+const currentArticles = sortedArticles.slice(startIndex, endIndex);
+---
+
+<Layout 
+  title="Articles - Zhive249 Digital Marketing Agency"
+  description="In-depth articles and analysis on digital transformation, technology trends, and business innovation."
+>
+  <div class="relative py-32 bg-navy-900">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-navy-900 to-navy-950"></div>
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-transparent"></div>
+    </div>
+
+    <Container>
+      <!-- Header -->
+      <div 
+        class="relative text-center max-w-3xl mx-auto mb-20"
+        data-aos="fade-down"
+        data-aos-duration="1000"
+      >
+        <h1 class="text-4xl font-bold tracking-tight sm:text-6xl mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+          Latest Articles
+        </h1>
+        <p class="text-lg text-navy-100 max-w-2xl mx-auto">
+          Expert insights and analysis on digital transformation, technology trends, and business innovation.
+        </p>
+      </div>
+
+      <!-- Featured Articles -->
+      {featuredArticles.length > 0 && (
+        <div class="mb-20">
+          <h2 class="text-2xl font-bold text-white mb-8">Featured Articles</h2>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {featuredArticles.map((article) => (
+              <div 
+                data-aos="fade-up"
+                class="relative group"
+              >
+                <ArticleCard
+                  title={article.data.title}
+                  description={article.data.description}
+                  publishDate={article.data.publishDate}
+                  author={article.data.author}
+                  category={article.data.category}
+                  image={article.data.image}
+                  slug={article.slug}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Articles Grid -->
+      <div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-16">
+        <!-- Decorative Elements -->
+        <div class="absolute -left-4 -top-4 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute -right-4 -bottom-4 w-72 h-72 bg-accent-500/10 rounded-full blur-3xl"></div>
+
+        {currentArticles.map((article, index) => (
+          <div 
+            data-aos="fade-up" 
+            data-aos-delay={index * 100}
+            class="relative group"
+          >
+            <!-- Card Glow Effect -->
+            <div class="absolute -inset-2 rounded-3xl bg-gradient-to-b from-primary-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-2xl -z-10"></div>
+            
+            <ArticleCard
+              title={article.data.title}
+              description={article.data.description}
+              publishDate={article.data.publishDate}
+              author={article.data.author}
+              category={article.data.category}
+              image={article.data.image}
+              slug={article.slug}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Pagination -->
+      {totalPages > 1 && (
+        <div class="flex justify-center items-center space-x-4 mt-12">
+          {currentPage > 1 && (
+            <a
+              href={`/articles?page=${currentPage - 1}`}
+              class="px-4 py-2 rounded-lg bg-navy-800 text-white hover:bg-primary-500 transition-colors duration-300"
+            >
+              Previous
+            </a>
+          )}
+          
+          <div class="flex items-center space-x-2">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+              <a
+                href={`/articles?page=${pageNum}`}
+                class={`w-10 h-10 flex items-center justify-center rounded-lg transition-colors duration-300 ${
+                  pageNum === currentPage
+                    ? 'bg-primary-500 text-white'
+                    : 'bg-navy-800 text-white hover:bg-primary-500/70'
+                }`}
+              >
+                {pageNum}
+              </a>
+            ))}
+          </div>
+
+          {currentPage < totalPages && (
+            <a
+              href={`/articles?page=${currentPage + 1}`}
+              class="px-4 py-2 rounded-lg bg-navy-800 text-white hover:bg-primary-500 transition-colors duration-300"
+            >
+              Next
+            </a>
+          )}
+        </div>
+      )}
+    </Container>
+  </div>
+</Layout>

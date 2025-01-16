@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "title": "Creative Branding & Design",
+    "icon": "/icons/1.svg",
+    "image": "/services/01.svg",
+    "description": "We specialize in creative branding and design that tells your brand's story and resonates with your audience.",
+    "link": "/services/creative-branding",
+    "features": [
+      "Brand Identity Development",
+      "Logo Design & Visual Systems",
+      "Brand Guidelines",
+      "Marketing Collateral",
+      "UI/UX Design"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Web Development & Technology",
+    "icon": "/icons/2.svg",
+    "image": "/services/02.svg",
+    "description": "From websites to web applications, we create innovative and responsive web solutions tailored to your needs.",
+    "link": "/services/web-development",
+    "features": [
+      "Custom Website Development",
+      "Web Applications",
+      "E-commerce Solutions",
+      "CMS Integration",
+      "Performance Optimization"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Market Research & Strategy",
+    "icon": "/icons/3.svg",
+    "image": "/services/03.svg",
+    "description": "Our market research services provide valuable insights to inform your business strategy and drive growth.",
+    "link": "/services/market-research",
+    "features": [
+      "Competitor Analysis",
+      "Market Trend Analysis",
+      "Consumer Behavior Studies",
+      "Data-Driven Insights",
+      "Strategic Planning"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Digital Marketing & Advertising",
+    "icon": "/icons/4.svg",
+    "image": "/services/04.svg",
+    "description": "We help you reach and engage your target audience through effective digital marketing strategies.",
+    "link": "/services/digital-marketing",
+    "features": [
+      "Social Media Marketing",
+      "Search Engine Optimization",
+      "Content Marketing",
+      "Email Marketing",
+      "PPC Advertising"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Content Creation & Management",
+    "icon": "/icons/5.svg",
+    "image": "/services/05.svg",
+    "description": "Engaging content that tells your story and connects with your audience across all platforms.",
+    "link": "/services/content-creation",
+    "features": [
+      "Copywriting",
+      "Blog Content",
+      "Social Media Content",
+      "Video Production",
+      "Content Strategy"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Analytics & Optimization",
+    "icon": "/icons/6.svg",
+    "image": "/services/06.svg",
+    "description": "Data-driven insights and optimization strategies to improve your digital performance.",
+    "link": "/services/analytics-optimization",
+    "features": [
+      "Performance Analytics",
+      "Conversion Optimization",
+      "A/B Testing",
+      "User Behavior Analysis",
+      "ROI Tracking"
+    ]
+  }
+]

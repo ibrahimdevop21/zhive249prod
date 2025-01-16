@@ -1,0 +1,133 @@
+---
+import ServiceLayout from '../../layouts/ServiceLayout.astro';
+
+const frontmatter = {
+  title: "Creative Branding",
+  subtitle: "& Design",
+  description: "Transform your brand identity with our creative branding services. We create compelling visual identities that resonate with your audience and set you apart from competitors.",
+  image: "/services/01.svg",
+  features: [
+    "Brand Identity Development",
+    "Logo Design & Visual Systems",
+    "Brand Guidelines",
+    "Marketing Collateral",
+    "UI/UX Design"
+  ],
+  benefits: [
+    "Stand out in your market",
+    "Build brand recognition",
+    "Increase customer trust",
+    "Consistent brand messaging",
+    "Professional market presence"
+  ]
+};
+---
+
+<ServiceLayout frontmatter={frontmatter}>
+  <div class="prose prose-lg max-w-none prose-dark">
+    <h2 class="text-primary-500">Transform Your Brand Identity</h2>
+    <p class="text-navy-200">
+      At Zhive249, we understand that your brand is more than just a logo – it's your company's personality, promise, and the emotional connection you make with your audience. Our creative branding services help you build a strong, memorable brand that resonates with your target market and drives business growth.
+    </p>
+
+    <h3 class="text-primary-500">Our Branding Services Include:</h3>
+    <ul class="feature-list" aria-label="Branding services features">
+      {frontmatter.features.map(feature => (
+        <li class="feature-item flex items-center gap-3">
+          <span class="feature-icon text-primary-500" aria-hidden="true">✓</span>
+          <span class="feature-text">{feature}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h3 class="text-primary-500">Key Benefits</h3>
+    <ul class="benefit-list" aria-label="Branding services benefits">
+      {frontmatter.benefits.map(benefit => (
+        <li class="benefit-item flex items-center gap-3">
+          <span class="benefit-icon text-accent-500" aria-hidden="true">→</span>
+          <span class="benefit-text">{benefit}</span>
+        </li>
+      ))}
+    </ul>
+
+    <h3 class="text-primary-500">Our Approach</h3>
+    <p class="text-navy-200">
+      We take a strategic approach to branding, combining market research, creative design, and brand strategy to create a cohesive brand identity that aligns with your business goals. Our process includes:
+    </p>
+
+    <ol class="process-list" aria-label="Our branding process">
+      <li class="process-item">
+        <strong>Discovery & Research:</strong> Understanding your business, market, and competition
+      </li>
+      <li class="process-item">
+        <strong>Strategy Development:</strong> Creating a comprehensive brand strategy
+      </li>
+      <li class="process-item">
+        <strong>Creative Design:</strong> Developing visual elements that bring your brand to life
+      </li>
+      <li class="process-item">
+        <strong>Implementation:</strong> Rolling out your new brand across all touchpoints
+      </li>
+      <li class="process-item">
+        <strong>Brand Guidelines:</strong> Creating documentation for consistent brand usage
+      </li>
+    </ol>
+
+    <div class="cta-section mt-8 p-6 bg-navy-700/50 rounded-lg">
+      <h3 class="text-primary-500">Ready to Transform Your Brand?</h3>
+      <p class="text-navy-200">
+        Let's create a brand that truly represents your business and connects with your audience. Contact us today to start your branding journey.
+      </p>
+      <a 
+        href="/contact" 
+        class="inline-flex items-center px-6 py-3 mt-4 text-base font-medium text-white bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors duration-200"
+        aria-label="Contact us about branding services"
+      >
+        Get Started
+        <svg class="w-5 h-5 ml-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</ServiceLayout>
+
+<style>
+  .feature-list,
+  .benefit-list,
+  .process-list {
+    @apply space-y-4 my-6 list-none pl-0;
+  }
+
+  .feature-item,
+  .benefit-item,
+  .process-item {
+    @apply text-navy-200 py-2 border-b border-navy-700/50 last:border-0;
+  }
+
+  .feature-icon,
+  .benefit-icon {
+    @apply flex-shrink-0 w-5 h-5;
+  }
+
+  .process-item {
+    @apply relative pl-8;
+  }
+
+  .process-item::before {
+    @apply absolute left-0 top-1/2 -translate-y-1/2 w-6 h-6 flex items-center justify-center 
+    bg-primary-500/10 rounded-full text-primary-500 text-sm font-bold;
+    counter-increment: process;
+    content: counter(process);
+  }
+
+  .cta-section {
+    @apply relative overflow-hidden;
+  }
+
+  .cta-section::before {
+    @apply absolute inset-0 bg-gradient-to-br from-primary-500/5 to-accent-500/5;
+    content: '';
+    z-index: -1;
+  }
+</style>

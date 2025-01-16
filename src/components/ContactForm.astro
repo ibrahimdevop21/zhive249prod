@@ -1,0 +1,430 @@
+---
+import { Image } from 'astro:assets';
+const formAction = import.meta.env.PUBLIC_FORMSPREE_ENDPOINT || "https://formspree.io/f/xlddeywg"; 
+
+const services = [
+  "Digital Marketing",
+  "Social Media Management",
+  "Content Creation",
+  "Web Development",
+  "SEO Optimization",
+  "Brand Strategy",
+  "Email Marketing",
+  "PPC Advertising",
+  "Marketing Analytics",
+  "Other"
+];
+
+const budgetRanges = [
+  "Under $1,000",
+  "$1,000 - $5,000",
+  "$5,000 - $10,000",
+  "$10,000 - $25,000",
+  "$25,000+"
+];
+
+const timelines = [
+  "Immediately",
+  "1-2 months",
+  "3-6 months",
+  "6+ months"
+];
+
+const referralSources = [
+  "Search Engine",
+  "Social Media",
+  "Referral",
+  "Advertisement",
+  "Other"
+];
+---
+
+<form
+  action={formAction}
+  method="POST"
+  class="space-y-6"
+  id="contact-form"
+  autocomplete="on"
+  client:load
+  data-astro-reload
+>
+  <!-- Company Information -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="form-group">
+      <label for="name" class="form-label">Full Name *</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        minlength="2"
+        class="form-input"
+        placeholder="Your full name"
+        autocomplete="name"
+      />
+      <p id="name-error" class="error-message hidden">Name is required.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="company" class="form-label">Company Name</label>
+      <input
+        type="text"
+        id="company"
+        name="company"
+        class="form-input"
+        placeholder="Your company name"
+        autocomplete="organization"
+      />
+    </div>
+  </div>
+
+  <!-- Contact Information -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="form-group">
+      <label for="email" class="form-label">Business Email *</label>
+      <input
+        type="email"
+        id="email"
+        name="_replyto"
+        required
+        pattern="[^@\s]+@[^\s@]+\.[^\s@]+$"
+        class="form-input"
+        placeholder="your@company.com"
+        autocomplete="email"
+      />
+      <p id="email-error" class="error-message hidden">Valid email is required.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="phone" class="form-label">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        name="phone"
+        class="form-input"
+        placeholder="+20 123 456 7890"
+        pattern="[\+]?[0-9\s\-\(\)]+"
+        autocomplete="tel"
+      />
+      <p id="phone-error" class="error-message hidden">Please enter a valid phone number.</p>
+    </div>
+  </div>
+
+  <!-- Project Details -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div class="form-group">
+      <label for="service" class="form-label">Service Interest *</label>
+      <select
+        id="service"
+        name="service"
+        required
+        class="form-input"
+      >
+        <option value="">Select a service</option>
+        {services.map((service) => (
+          <option value={service}>{service}</option>
+        ))}
+      </select>
+      <p id="service-error" class="error-message hidden">Please select a service.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="budget" class="form-label">Budget Range *</label>
+      <select
+        id="budget"
+        name="budget"
+        required
+        class="form-input"
+      >
+        <option value="">Select budget range</option>
+        {budgetRanges.map((range) => (
+          <option value={range}>{range}</option>
+        ))}
+      </select>
+      <p id="budget-error" class="error-message hidden">Please select a budget range.</p>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="form-group">
+    <label for="timeline" class="form-label">Project Timeline</label>
+    <select
+      id="timeline"
+      name="timeline"
+      class="form-input"
+    >
+      <option value="">When would you like to start?</option>
+      {timelines.map((timeline) => (
+        <option value={timeline}>{timeline}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Website -->
+  <div class="form-group">
+    <label for="website" class="form-label">Website URL</label>
+    <input
+      type="url"
+      id="website"
+      name="website"
+      class="form-input"
+      placeholder="https://your-website.com"
+      autocomplete="url"
+    />
+  </div>
+
+  <!-- Project Description -->
+  <div class="form-group">
+    <label for="message" class="form-label">Project Details *</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="6"
+      required
+      minlength="20"
+      class="form-input"
+      placeholder="Tell us about your project goals, challenges, and expectations..."
+    ></textarea>
+    <p id="message-error" class="error-message hidden">Please provide project details (min 20 characters).</p>
+  </div>
+
+  <!-- Marketing Specific -->
+  <div class="form-group">
+    <label for="goals" class="form-label">Key Marketing Goals</label>
+    <textarea
+      id="goals"
+      name="goals"
+      rows="3"
+      class="form-input"
+      placeholder="What specific marketing goals would you like to achieve?"
+    ></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="target-audience" class="form-label">Target Audience</label>
+    <textarea
+      id="target-audience"
+      name="target-audience"
+      rows="3"
+      class="form-input"
+      placeholder="Describe your ideal customer or target market..."
+    ></textarea>
+  </div>
+
+  <!-- How did you hear about us -->
+  <div class="form-group">
+    <label for="referral" class="form-label">How did you hear about us?</label>
+    <select
+      id="referral"
+      name="referral"
+      class="form-input"
+    >
+      <option value="">Select an option</option>
+      {referralSources.map((source) => (
+        <option value={source}>{source}</option>
+      ))}
+    </select>
+  </div>
+
+  <!-- Honeypot field to prevent spam -->
+  <input type="text" name="_gotcha" style="display:none" />
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button
+      type="submit"
+      class="submit-btn group"
+      id="submit-button"
+    >
+      <span>Send Message</span>
+      <div class="loading-spinner hidden ml-2 inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em]" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </button>
+    <p class="text-sm text-navy-400 mt-2 text-center">* Required fields</p>
+  </div>
+
+  <!-- Form Status -->
+  <div id="form-status" class="hidden">
+    <p id="success-message" class="success-message hidden">Thank you for your inquiry! We'll review your project details and get back to you within 24-48 hours.</p>
+    <p id="error-message" class="error-message hidden">Failed to send message. Please try again or contact us directly.</p>
+  </div>
+</form>
+
+<style>
+  .form-group {
+    @apply mb-6 relative;
+  }
+
+  .form-label {
+    @apply block text-sm font-semibold text-navy-200 mb-2;
+  }
+
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg bg-navy-800/50 text-white border border-navy-700/50
+    placeholder-navy-400 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-transparent
+    transition-all duration-300 z-10;
+  }
+
+  .form-input:focus {
+    @apply bg-navy-700/50;
+  }
+
+  .submit-btn {
+    @apply w-full flex items-center justify-center px-6 py-3 text-base font-semibold text-white
+    bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg
+    hover:from-primary-600 hover:to-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500/50
+    disabled:opacity-50 disabled:cursor-not-allowed
+    transform hover:-translate-y-0.5 transition-all duration-300 relative z-10;
+  }
+
+  .success-message {
+    @apply text-green-500 font-medium text-center py-2;
+  }
+
+  .error-message {
+    @apply text-red-500 text-sm mt-1;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Loading spinner animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<script>
+  // Form validation and submission code
+  const form = document.getElementById('contact-form');
+  const submitButton = document.getElementById('submit-button');
+  const loadingSpinner = submitButton?.querySelector('.loading-spinner');
+  const submitText = submitButton?.querySelector('span');
+  const formStatus = document.getElementById('form-status');
+  const successMessage = document.getElementById('success-message');
+  const errorMessage = document.getElementById('error-message');
+
+  function validateField(input) {
+    const errorElement = document.getElementById(`${input.id}-error`);
+    
+    // Clear previous error
+    errorElement?.classList.add('hidden');
+    input.classList.remove('border-red-500');
+
+    if (input.required && !input.value.trim()) {
+      errorElement?.classList.remove('hidden');
+      input.classList.add('border-red-500');
+      return false;
+    }
+
+    if (input.minLength && input.value.length < input.minLength) {
+      errorElement.textContent = `${input.previousElementSibling.textContent} must be at least ${input.minLength} characters`;
+      errorElement?.classList.remove('hidden');
+      input.classList.add('border-red-500');
+      return false;
+    }
+
+    if (input.type === 'email' && input.value) {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(input.value)) {
+        errorElement.textContent = 'Please enter a valid email address';
+        errorElement?.classList.remove('hidden');
+        input.classList.add('border-red-500');
+        return false;
+      }
+    }
+
+    if (input.type === 'tel' && input.value) {
+      const phonePattern = /[\+]?[0-9\s\-\(\)]+/;
+      if (!phonePattern.test(input.value)) {
+        errorElement.textContent = 'Please enter a valid phone number';
+        errorElement?.classList.remove('hidden');
+        input.classList.add('border-red-500');
+        return false;
+      }
+    }
+
+    if (input.type === 'url' && input.value) {
+      try {
+        new URL(input.value);
+      } catch {
+        errorElement.textContent = 'Please enter a valid URL';
+        errorElement?.classList.remove('hidden');
+        input.classList.add('border-red-500');
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  // Add event listeners to all form fields
+  const formFields = form?.querySelectorAll('input, textarea, select');
+  formFields?.forEach(field => {
+    field.addEventListener('blur', () => validateField(field));
+    field.addEventListener('input', () => validateField(field));
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Validate all fields
+    const inputs = form.querySelectorAll('input:not([name="_gotcha"]), textarea, select');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+      if (!validateField(input)) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) return;
+
+    // Show loading state
+    submitButton.disabled = true;
+    loadingSpinner?.classList.remove('hidden');
+    submitText.textContent = 'Sending...';
+    formStatus?.classList.add('hidden');
+    successMessage?.classList.add('hidden');
+    errorMessage?.classList.add('hidden');
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        // Show success message
+        form.reset();
+        formStatus?.classList.remove('hidden');
+        successMessage?.classList.remove('hidden');
+        // Scroll to success message
+        successMessage?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        throw new Error('Network response was not ok');
+      }
+    } catch (error) {
+      // Show error message
+      formStatus?.classList.remove('hidden');
+      errorMessage?.classList.remove('hidden');
+      // Scroll to error message
+      errorMessage?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } finally {
+      // Reset button state
+      submitButton.disabled = false;
+      loadingSpinner?.classList.add('hidden');
+      submitText.textContent = 'Send Message';
+    }
+  });
+</script>

@@ -1,0 +1,224 @@
+---
+import Layout from './Layout.astro';
+import Container from '../components/Container.astro';
+
+interface Props {
+  frontmatter: {
+    title: string;
+    subtitle: string;
+    description: string;
+    image: string;
+  };
+}
+
+const { frontmatter } = Astro.props;
+
+// SEO metadata
+const pageTitle = `${frontmatter.title} Services | Zhive249`;
+const pageDescription = frontmatter.description;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(frontmatter.image, Astro.site);
+
+// Schema.org structured data
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": frontmatter.title,
+  "description": frontmatter.description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Zhive249",
+    "url": Astro.site
+  },
+  "url": canonicalURL.toString(),
+  "image": ogImage.toString()
+};
+---
+
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  image={ogImage.toString()}
+  ogType="website"
+  noIndex={false}
+>
+  <Fragment slot="head">
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  </Fragment>
+
+  <main class="overflow-hidden">
+    <!-- Hero Section with Animation -->
+    <section class="py-20 bg-dark-500 text-white relative">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,_rgba(249,115,22,0.1),transparent_70%)]"></div>
+      <Container>
+        <div class="max-w-4xl mx-auto text-center space-y-8 relative animate-fade-in">
+          <div class="inline-block animate-slide-up">
+            <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+              {frontmatter.title}
+              <span class="block text-primary-500 mt-2 animate-glow">{frontmatter.subtitle}</span>
+            </h1>
+          </div>
+          <p class="text-xl text-dark-300 animate-fade-in-delay">{frontmatter.description}</p>
+          
+          <!-- Floating Image -->
+          <div class="mt-12 relative animate-float">
+            <img 
+              src={frontmatter.image} 
+              alt={frontmatter.title} 
+              class="w-64 h-64 mx-auto object-contain"
+            />
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Interactive Features Section -->
+    <section class="py-16 bg-gradient-to-b from-dark-500 to-dark-600">
+      <Container>
+        <div class="grid md:grid-cols-3 gap-12">
+          <!-- Main Content -->
+          <div class="md:col-span-2 prose prose-lg max-w-none prose-dark dark:prose-invert">
+            <div class="animate-fade-in-up">
+              <slot />
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="space-y-8 animate-fade-in-right">
+            <!-- Stats Card -->
+            <div class="bg-dark-400/50 p-8 rounded-3xl backdrop-blur-sm border border-primary-500/10">
+              <h3 class="text-xl font-bold text-white mb-6">Key Benefits</h3>
+              <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-primary-500/10 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Fast Delivery</h4>
+                    <p class="text-dark-300 text-sm">Quick turnaround times for all projects</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-accent-500/10 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Quality Assured</h4>
+                    <p class="text-dark-300 text-sm">100% satisfaction guaranteed</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0 w-12 h-12 bg-primary-500/10 rounded-xl flex items-center justify-center">
+                    <svg class="w-6 h-6 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Competitive Pricing</h4>
+                    <p class="text-dark-300 text-sm">Best value for your investment</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="bg-dark-400/50 p-8 rounded-3xl backdrop-blur-sm border border-primary-500/10">
+              <h3 class="text-xl font-bold text-white mb-6">Frequently Asked Questions</h3>
+              <div class="space-y-4">
+                <details class="group">
+                  <summary class="flex justify-between items-center cursor-pointer list-none p-4 rounded-xl bg-dark-500/50 text-white hover:bg-dark-500 transition-colors">
+                    <span>How long does it take?</span>
+                    <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <p class="mt-4 text-dark-300 text-sm px-4">Project timelines vary based on complexity. We'll provide a detailed timeline during our initial consultation.</p>
+                </details>
+
+                <details class="group">
+                  <summary class="flex justify-between items-center cursor-pointer list-none p-4 rounded-xl bg-dark-500/50 text-white hover:bg-dark-500 transition-colors">
+                    <span>What's the process?</span>
+                    <svg class="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </summary>
+                  <p class="mt-4 text-dark-300 text-sm px-4">We follow a structured approach: Discovery, Planning, Execution, and Review to ensure the best results.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 20px rgba(249, 115, 22, 0.5); }
+    50% { text-shadow: 0 0 30px rgba(249, 115, 22, 0.8); }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 1s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in-delay {
+    animation: fade-in 1s ease-out 0.5s both;
+  }
+
+  .animate-fade-in-up {
+    animation: slide-up 1s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: slide-right 1s ease-out;
+  }
+
+  @keyframes slide-right {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+</style>

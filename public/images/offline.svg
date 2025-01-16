@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <title>Offline</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <circle fill="#0F172A" cx="100" cy="100" r="100"/>
+        <path d="M100,50 C77.90861,50 60,67.90861 60,90 C60,112.09139 77.90861,130 100,130 C122.09139,130 140,112.09139 140,90 C140,67.90861 122.09139,50 100,50 Z M100,120 C83.4314575,120 70,106.568542 70,90 C70,73.4314575 83.4314575,60 100,60 C116.568542,60 130,73.4314575 130,90 C130,106.568542 116.568542,120 100,120 Z" fill="#FFFFFF" fill-rule="nonzero"/>
+        <path d="M95,85 L105,85 L105,125 L95,125 L95,85 Z M95,65 L105,65 L105,75 L95,75 L95,65 Z" fill="#FFFFFF"/>
+    </g>
+</svg>

@@ -1,0 +1,100 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import Topic from '../../components/Topic.astro';
+import servicesData from '../../components/Data/services.json';
+
+const pageTitle = "Our Services | Zhive249";
+const pageDescription = "Explore our comprehensive range of digital services including branding, marketing, web development, and more.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <main class="relative">
+    <!-- Hero Section -->
+    <section class="relative py-20 sm:py-32 bg-navy-900">
+      <!-- Background Pattern -->
+      <div class="absolute inset-0 bg-grid-navy-700/20 bg-[size:20px_20px]"></div>
+      
+      <!-- Gradient Overlays -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-300/20 to-transparent"></div>
+      </div>
+
+      <Container>
+        <div class="max-w-3xl mx-auto text-center">
+          <h1 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">Our Services</h1>
+          <h2 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-2xl">
+            Comprehensive Digital Solutions
+          </h2>
+          <p class="mt-6 text-xl leading-8 text-navy-200">
+            From branding to development, we offer a full suite of services to help your business thrive in the digital landscape.
+          </p>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="relative py-24 bg-navy-800/50">
+      <Container>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
+          <!-- Decorative Elements -->
+          <div class="absolute -left-4 -top-4 w-72 h-72 bg-primary-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute -right-4 -bottom-4 w-72 h-72 bg-accent-500/10 rounded-full blur-3xl"></div>
+
+          {servicesData.map(service => (
+            <div class="relative group">
+              <!-- Card Background with Gradient Border -->
+              <div class="absolute -inset-px bg-gradient-to-r from-primary-500/50 to-accent-500/50 rounded-2xl blur transition duration-300 group-hover:opacity-100 opacity-75"></div>
+              <div class="relative h-full p-px bg-navy-700/50 rounded-2xl overflow-hidden">
+                <div class="relative h-full bg-navy-800/90 rounded-2xl p-8">
+                  <!-- Service Icon -->
+                  <div class="mb-6 inline-flex p-3 rounded-lg bg-primary-500/10">
+                    <img 
+                      src={service.icon} 
+                      alt={`${service.title} icon`}
+                      class="w-6 h-6"
+                    />
+                  </div>
+
+                  <!-- Service Content -->
+                  <h3 class="text-xl font-semibold text-white mb-4">
+                    {service.title}
+                  </h3>
+                  <p class="text-navy-200 mb-6">
+                    {service.description}
+                  </p>
+
+                  <!-- Features List -->
+                  <ul class="space-y-3 text-sm text-navy-200">
+                    {service.features.map(feature => (
+                      <li class="flex items-center gap-3">
+                        <svg class="w-5 h-5 text-primary-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                        </svg>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <!-- Learn More Link -->
+                  <div class="mt-8 pt-6 border-t border-navy-700">
+                    <a 
+                      href={service.link} 
+                      class="inline-flex items-center gap-2 text-primary-400 hover:text-primary-300 transition-colors duration-200 group"
+                    >
+                      Learn more
+                      <svg class="w-4 h-4 transform transition-transform group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,87 @@
+---
+interface TeamMember {
+  name: string;
+  role: string;
+  bio: string;
+  image: string;
+  social: {
+    email?: string;
+    linkedin?: string;
+    instagram?: string;
+  };
+}
+
+interface Props {
+  contributors: TeamMember[];
+}
+
+const { contributors } = Astro.props;
+---
+
+<div class="space-y-12">
+  <h2 class="text-3xl font-bold text-center text-gray-100 animate-fade-in">
+    Our Amazing Contributors
+  </h2>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {contributors.map((contributor, index) => (
+      <div 
+        class="flex items-center space-x-6 p-6 rounded-lg bg-navy-800/50 hover:bg-navy-800 transition-all duration-300 transform hover:scale-105 hover:shadow-lg animate-fade-in-up"
+        style={`animation-delay: ${index * 100}ms`}
+      >
+      <div class="flex-shrink-0 relative">
+        <img 
+          src={contributor.image} 
+          alt={contributor.name}
+          class="w-28 h-28 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-500 transition-colors duration-300"
+        />
+      </div>
+      <div class="space-y-2">
+        <h3 class="text-xl font-bold text-gray-100">{contributor.name}</h3>
+        <p class="text-sm text-primary-400 font-medium">{contributor.role}</p>
+        <p class="text-sm text-gray-300 line-clamp-3 hover:line-clamp-none transition-all duration-300">
+          {contributor.bio}
+        </p>
+        <div class="flex space-x-4 mt-3">
+          {contributor.social.email && (
+            <a 
+              href={`mailto:${contributor.social.email}`} 
+              class="text-gray-400 hover:text-primary-500 transition-colors duration-300"
+              aria-label="Email"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
+          )}
+          {contributor.social.linkedin && (
+            <a 
+              href={contributor.social.linkedin} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="text-gray-400 hover:text-[#0A66C2] transition-colors duration-300"
+              aria-label="LinkedIn"
+            >
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          )}
+          {contributor.social.instagram && (
+            <a 
+              href={contributor.social.instagram} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="text-gray-400 hover:text-[#E4405F] transition-colors duration-300"
+              aria-label="Instagram"
+            >
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/>
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  ))}
+</div>

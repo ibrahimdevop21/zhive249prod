@@ -1,0 +1,369 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/Container.astro';
+import TeamSection from '../components/TeamSection.astro';
+import ContributingAssets from '../components/ContributingAssets.astro';
+
+const stats = [
+  { value: '50+', label: 'Years Combined Experience', icon: '🏆' },
+  { value: '150+', label: 'Projects Completed', icon: '🎯' },
+  { value: '50+', label: 'Happy Clients', icon: '😊' }
+];
+
+// Team members data
+const teamMembers = [
+  {
+    name: 'Waad Khalid',
+    role: 'Project Manager & Senior Researcher',
+    bio: 'Meet our deadline ninja with the sweetest smile! 🌟 Waad keeps our projects running like clockwork with her perfect blend of charm and efficiency. With extensive experience in project management and research, she ensures every project is delivered on time and exceeds client expectations.',
+    image: '/optimized/waad-kh.webp',
+    socials: {
+      email: 'waad.minalla@zhive249.com',
+      linkedin: 'https://www.linkedin.com/in/waad-khalid-21495a242/',
+    }
+  },
+  {
+    name: 'Waad',
+    role: 'Finance & HR Manager',
+    bio: 'Need a new laptop or tool? Waad\'s your financial fairy godmother! 💫 As our master of budgets and keeper of resources, she ensures our team has everything they need to succeed while maintaining optimal operational efficiency. Her expertise in finance and human resources keeps our organization running smoothly.',
+    image: '/optimized/waad.webp',
+    socials: {
+      email: 'waad.ibrahim@zhive249.com'
+    }
+  },
+  {
+    name: 'Shahd',
+    role: 'Public Relations Director',
+    bio: 'Our ray of sunshine and master of connections! With her infectious energy and quick wit, Shahd keeps our office buzzing with laughter while building and maintaining strong relationships with our clients and partners. Her creative approach to public relations has helped establish Zhive249 as a trusted name in the industry.',
+    image: '/optimized/shahd.webp',
+    socials: {
+      email: 'shahd.minalla@zhive249.com',
+      instagram: 'https://www.instagram.com/shahdminalla'
+    }
+  },
+  {
+    name: 'Ibrahim',
+    role: 'Technical Director',
+    bio: 'The wizard behind the code who turned coffee into successful businesses! With a track record in export/import, wholesale, and web development, Ibrahim brings a unique blend of technical expertise and business acumen to every project. His innovative approach to problem-solving and passion for technology drives our technical excellence.',
+    image: '/optimized/ibrahim.webp',
+    socials: {
+      email: 'ibrahim.mohamed@zhive249.com',
+      linkedin: 'https://www.linkedin.com/in/ibrahimdevop21',
+      github: 'https://github.com/ibrahimdevop21'
+    }
+  },
+  {
+    name: 'Ahmed',
+    role: 'Creative Director',
+    bio: 'Our creative mastermind who brings ideas to life! Ahmed\'s designs are not just visually stunning but tell compelling stories.',
+    image: '/optimized/ahmed.webp',
+    socials: {
+      email: 'ahmed.ibrahim@zhive249.com',
+      linkedin: 'https://www.linkedin.com/in/ahmed-esa-46488a172/'
+    }
+  },
+  {
+    name: 'Shams El-din',
+    role: 'Creative Director',
+    bio: 'Our creative mastermind who brings ideas to life! Shams\'s designs are not just visually stunning but tell compelling stories.',
+    image: '/optimized/Shams.webp',
+    socials: {
+      email: ''
+    }
+  },
+];
+
+const values = [
+  {
+    icon: '⚡',
+    title: 'Efficiency',
+    description: 'Delivering exceptional results through streamlined strategies and innovative solutions. We optimize processes and leverage cutting-edge technology to ensure maximum impact with minimal resources.'
+  },
+  {
+    icon: '🏛️',
+    title: 'Strength and Stability',
+    description: 'Building enduring foundations and trusted partnerships, we ensure reliability and long-term success in every project we undertake. Our commitment to stability drives sustainable growth.'
+  },
+  {
+    icon: '🤝',
+    title: 'Harmony and Unity',
+    description: 'Creating synergy among teams, brands, and audiences to deliver cohesive, impactful campaigns.'
+  },
+  {
+    icon: '🎨',
+    title: 'Modern Design Appeal',
+    description: 'Combining contemporary trends with timeless aesthetics to captivate and inspire.'
+  },
+  {
+    icon: '🔄',
+    title: 'Adaptability',
+    description: 'Staying ahead of industry trends, quickly adjusting to market demands, and providing tailored solutions for diverse needs.'
+  },
+  {
+    icon: '💡',
+    title: 'Innovation',
+    description: 'Continuously exploring new ideas and technologies to push boundaries and redefine marketing excellence.'
+  }
+];
+
+const contributingTeam = [
+  {
+    name: 'Osama',
+    role: 'Corporate Account Manager',
+    bio: 'Sarah brings fresh perspectives and innovative content strategies to our projects.',
+    image: '/optimized/joe.webp',
+    social: {
+      email: 'osama@zhive249.com'
+    }
+  },
+  {
+    name: 'Ahmed Abo-Elela',
+    role: 'Startup Account Manager',
+    bio: 'Shams ensures our digital experiences are not just beautiful but also intuitive and user-friendly.',
+    image: '/team/Shams.webp',
+    social: {
+      email: 'Ahmed@zhive249.com'
+    }
+  }
+];
+
+---
+
+<Layout title="About Us | Zhive249">
+  <main>
+    <!-- Hero Section with Animated Gradient -->
+    <section class="relative overflow-hidden min-h-[calc(100vh-5rem)]">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-navy-800 to-navy-900 animate-gradient"></div>
+      <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      
+      <Container>
+        <div class="relative flex flex-col justify-center min-h-[calc(100vh-5rem)] max-w-3xl mx-auto text-center py-16">
+          <h1 class="text-4xl font-bold tracking-tight text-white sm:text-6xl bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">
+            Our Story
+          </h1>
+          <p class="mt-6 text-lg leading-8 text-navy-100">
+            From humble beginnings to industry innovation, discover the journey that shaped Zhive249 into a leading force in digital transformation.
+          </p>
+          <p class="mt-6 text-lg leading-8 text-navy-100">
+            Born from a shared vision of excellence, Zhive249 brings together talented freelancers from across the Arab world. We are developers, designers, marketers, and strategists who discovered that our combined expertise creates something truly extraordinary.
+          </p>
+          <p class="mt-6 text-lg leading-8 text-navy-100">
+            For the past year, we've been working together as a unified team, bringing over 50 years of combined real-world experience from major Arab markets including Saudi Arabia, UAE, Jordan, Sudan, and Egypt. This diverse regional expertise gives us unique insights into local markets while maintaining global standards.
+          </p>
+          <p class="mt-6 text-lg leading-8 text-navy-100">
+            What started as individual journeys has evolved into a powerful collective. We united with a singular mission: to harness our diverse talents, cultural insights, and technical expertise to deliver outstanding digital solutions that transcend borders.
+          </p>
+          <div class="flex justify-center mt-12">
+            <a 
+              href="/contact" 
+              class="rounded-lg bg-primary-500 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 transition-all duration-300"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-900 to-navy-800"></div>
+      <Container>
+        <div 
+          class="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {stats.map((stat) => (
+            <div class="text-center">
+              <div class="relative h-full">
+                <div class="absolute -inset-2 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg blur opacity-25"></div>
+                <div class="relative bg-navy-800/50 backdrop-blur-sm rounded-lg p-8 h-full hover:bg-navy-700/50 transition-all duration-300 flex flex-col items-center justify-center">
+                  <dt class="text-5xl mb-4">{stat.icon}</dt>
+                  <dd class="text-4xl font-bold tracking-tight text-primary-400 mb-2">{stat.value}</dd>
+                  <dt class="text-base text-navy-200">{stat.label}</dt>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-24 bg-gradient-to-b from-navy-800 to-navy-900 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-300/20 to-transparent"></div>
+      </div>
+      <Container>
+        <div 
+          class="relative max-w-3xl mx-auto text-center mb-16"
+        >
+          <h2 
+            class="text-3xl font-bold tracking-tight text-white sm:text-5xl mb-4"
+          >
+            Meet Our Team
+          </h2>
+          <p 
+            class="text-lg text-navy-100"
+          >
+            The passionate individuals behind Zhive249's success, bringing innovation and expertise to every project.
+          </p>
+        </div>
+        <TeamSection teamMembers={teamMembers} />
+      </Container>
+    </section>
+
+    <!-- Contributing Assets Section -->
+    <section class="py-24 bg-navy-900 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+      <Container>
+        <div 
+          class="mx-auto max-w-2xl text-center mb-16"
+        >
+          <h2 
+            class="text-3xl font-medium tracking-tight sm:text-4xl mb-4"
+          >
+            Contributing Assets
+          </h2>
+          <p 
+            class="text-lg text-gray-300"
+          >
+            The talented individuals who help make our vision a reality
+          </p>
+        </div>
+        <ContributingAssets contributors={contributingTeam} />
+      </Container>
+    </section>
+
+    <!-- Values Section with Hover Effects -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-900 to-navy-800"></div>
+      <Container>
+        <div 
+          class="text-center max-w-3xl mx-auto mb-16 relative"
+        >
+          <h2 
+            class="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-500 to-primary-400 bg-clip-text text-transparent"
+          >
+            Our Values
+          </h2>
+          <p 
+            class="text-lg text-navy-200"
+          >
+            These core values drive our mission and shape how we deliver exceptional results for our clients.
+          </p>
+        </div>
+        <div 
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative"
+        >
+          {values.map((value) => (
+            <div class="group relative h-full">
+              <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+              <div class="relative h-full p-8 bg-navy-800/90 backdrop-blur-sm rounded-lg hover:bg-navy-700/90 transition-all duration-300 flex flex-col">
+                <div 
+                  class="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300"
+                >
+                  {value.icon}
+                </div>
+                <h3 
+                  class="text-xl font-bold mb-3 text-white group-hover:text-primary-400 transition-colors"
+                >
+                  {value.title}
+                </h3>
+                <p 
+                  class="text-navy-200 leading-relaxed flex-grow"
+                >
+                  {value.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Container>
+    </section>
+
+    <!-- Contact CTA Section -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-500/20 via-navy-800 to-navy-900"></div>
+      <Container>
+        <div 
+          class="relative max-w-3xl mx-auto text-center"
+        >
+          <h2 
+            class="text-4xl font-bold mb-6 text-white"
+          >
+            Ready to Work Together?
+          </h2>
+          <p 
+            class="text-lg text-navy-200 mb-8"
+          >
+            Let's discuss how we can help your business grow in the digital landscape.
+          </p>
+          <a 
+            href="/contact" 
+            class="inline-flex items-center px-8 py-4 rounded-lg bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors duration-300"
+          >
+            Get in Touch
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+        </div>
+      </Container>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+</style>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WCTR5L70NZ"></script>
+<script>
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+window.dataLayer = window.dataLayer || [];
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+window.dataLayer = window.dataLayer || [];
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+window.dataLayer = window.dataLayer || [];
+declare global {
+  interface Window {
+    dataLayer: any[];
+  }
+}
+window.dataLayer = window.dataLayer || [];
+function gtag(){ window.dataLayer.push(arguments); }
+gtag('js'); // Call with one argument
+gtag('config', 'G-WCTR5L70NZ'); // Call with two arguments
+
+  gtag('config', 'G-WCTR5L70NZ');
+</script>
