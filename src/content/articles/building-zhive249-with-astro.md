@@ -9,7 +9,7 @@ author:
   role: "Front-end Developer"
 category: "Web Development"
 image: "/articles/astro.webp"
-featured: true
+featured: false
 ---
 
 # Building Zhive249 with Astro: A Fun and Fast Journey to a Scalable, SEO-Powered Website
