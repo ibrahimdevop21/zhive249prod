@@ -137,18 +137,7 @@ const pathname = new URL(Astro.request.url).pathname;
                           {dropItem.name}
                         </a>
                       ))}
-                      <div class="border-t border-navy-700/50 mt-1">
-                        <a
-                          href="/services"
-                          class="text-primary-500 group flex items-center px-4 py-2 text-sm hover:bg-navy-800/50 hover:text-primary-400 transition-all duration-300"
-                          role="menuitem"
-                        >
-                          View All Services
-                          <svg class="ml-2 h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                          </svg>
-                        </a>
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -233,4 +222,5 @@ const pathname = new URL(Astro.request.url).pathname;
       box-shadow: none !important;
     }
   }
+
 </style>
