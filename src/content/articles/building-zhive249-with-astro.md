@@ -1,7 +1,7 @@
 ---
 title: "Building Zhive249 with Astro"
 description: "Discover how the team behind Zhive249 leveraged AstroJS to create a high-performing, scalable, and SEO-optimized website."
-publishDate: 2025-11-12
+publishDate: 2024-11-12
 author:
   name: "Ibrahim Mohamed"
   image: "/optimized/ibrahim.webp"
