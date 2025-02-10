@@ -21,6 +21,7 @@ const formattedDate = new Date(article.data.publishDate).toLocaleDateString('en-
   month: 'long',
   day: 'numeric'
 });
+
 ---
 
 <Layout 
@@ -29,30 +30,28 @@ const formattedDate = new Date(article.data.publishDate).toLocaleDateString('en-
 >
   <article class="relative bg-navy-900 min-h-screen">
     <!-- Hero Section with Image -->
-    <div class="relative h-[60vh] min-h-[500px] w-full overflow-hidden">
+    <div class="block w-full overflow-hidden">
       <!-- Background Image -->
-      <div class="absolute inset-0">
-        <img 
-          src={article.data.image} 
-          alt={article.data.title}
-          class="w-full h-full object-cover"
-        />
-        <!-- Gradient Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-navy-950/60 via-navy-950/80 to-navy-900"></div>
-      </div>
+      <img 
+        src={article.data.image} 
+        alt={article.data.title}
+        class="w-full h-[60vh] min-h-[500px] object-cover"
+      />
+      <!-- Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-b from-navy-950/60 via-navy-950/80 to-navy-900"></div>
 
       <!-- Content Overlay -->
       <Container>
-        <div class="relative h-full flex flex-col justify-end pb-20">
+        <div class="relative h-full flex flex-col justify-end pb-10 pt-16"> <!-- Reduced pb-20 to pb-10 -->
           <!-- Category Badge -->
-          <div class="mb-6">
+<!--          <div class="mb-6">
             <span class="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-semibold bg-primary-500 text-white shadow-lg shadow-primary-500/20">
               {article.data.category}
             </span>
-          </div>
+          </div>      -->
 
           <!-- Title -->
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white max-w-4xl">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white max-w-4xl"> <!-- Reduced mb-12 to mb-4 -->
             {article.data.title}
           </h1>
 
@@ -62,7 +61,7 @@ const formattedDate = new Date(article.data.publishDate).toLocaleDateString('en-
           </p>
 
           <!-- Author Info -->
-          <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-4 mb-4"> <!-- Reduced mb-6 to mb-4 -->
             <img 
               src={article.data.author.image} 
               alt={article.data.author.name}
@@ -83,8 +82,8 @@ const formattedDate = new Date(article.data.publishDate).toLocaleDateString('en-
 
     <!-- Article Content -->
     <Container>
-      <div class="relative py-16">
-        <div class="max-w-4xl mx-auto prose prose-invert prose-lg">
+      <div class="relative pb-16">
+        <div class="max-w-4xl mx-auto prose prose-invert prose-lg mt-4"> <!-- Reduced mt-12 to mt-4 -->
           <div class="prose-headings:text-white prose-p:text-navy-100 prose-strong:text-white prose-a:text-primary-400 hover:prose-a:text-primary-300 prose-blockquote:text-navy-100 prose-code:text-primary-300 prose-pre:bg-navy-800 prose-pre:text-navy-100 prose-ol:text-navy-100 prose-ul:text-navy-100">
             <Content />
           </div>
@@ -93,6 +92,7 @@ const formattedDate = new Date(article.data.publishDate).toLocaleDateString('en-
     </Container>
   </article>
 </Layout>
+
 
 <style is:global>
   /* Remove the first h1/title from the markdown content */
